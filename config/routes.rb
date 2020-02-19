@@ -4,9 +4,5 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  devise_scope :user do
-    get "login", to: "devise/sessions#new"
-  end
-
   match "*path" => redirect("/"), :via => [:get, :post]
 end
