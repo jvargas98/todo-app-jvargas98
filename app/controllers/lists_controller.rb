@@ -66,7 +66,10 @@ class ListsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_list
-    @list = List.find(params[:id])
+    @list = current_user.lists.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "Wrong list it"
+    redirect_to :action => "index"
   end
 
   # Only allow a list of trusted parameters through.
