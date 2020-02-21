@@ -75,6 +75,11 @@ class TasksController < ApplicationController
   end
 
   def get_list
-    @list = List.find(params[:list_id])
+    @list = current_user.lists.find(params[:list_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:notice] = "Wrong list it"
+    redirect_to lists_path
   end
 end
+
+validates :body, presence: true
