@@ -1,10 +1,18 @@
-<nav>
-  <li>
-    <%= link_to "Home", root_path %>
-  </li>
+<nav class="navbar sticky-top navbar-expand-md bg-dark">
+  <li class="nav-item">
+    <%= link_to "TodoApp", root_path, class:'navbar-brand font-weight-bold text-white' %>
+  </li class="nav-item">
   <% if user_signed_in? %>
-    <li>
-      <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+    <li class="nav-item">
+      <%= link_to "My lists", lists_path, class:'nav-link text-white' %>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Profile
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class:'dropdown-item' %>
+      </div>
     </li>
   <% end %>
 </nav>

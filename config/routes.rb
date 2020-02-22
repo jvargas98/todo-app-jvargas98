@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :tasks
   end
 
-  root to: "home#index"
+  root to: "lists#index"
 
-  match "*path" => redirect("/"), :via => [:get, :post]
+  #match "*path" => redirect("/"), :via => [:get, :post, :delete]
 end
