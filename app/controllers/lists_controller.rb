@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :show]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :show, :index]
 
   # GET /lists
   # GET /lists.json
