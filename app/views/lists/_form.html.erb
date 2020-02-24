@@ -15,9 +15,9 @@
   </div>
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description, size: '1x7', class:"text-area" %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Accept", class: "btn btn-primary w-100 mb-2 rounded-10"%>
   </div>
 <% end %>
