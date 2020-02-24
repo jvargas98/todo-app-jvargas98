@@ -27,6 +27,30 @@ body {
   }
 }
 
+.text-area{
+  @extend .form-control;
+    @extend .bg-light;
+    @extend .bg-white;
+    @extend .border;
+    @extend .shadow;
+    @extend .rounded;
+    border-radius: 10px !important;
+    margin-bottom: 15px;
+}
+
 .rounded-10 {
   border-radius: 10px;
+}
+
+.card-size-sm{ 
+  margin: 1.5em 0.8em; 
+  width: 280px; 
+  height: 220px;
+}
+.card-size-lg{ 
+  height: 300px;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
 }
