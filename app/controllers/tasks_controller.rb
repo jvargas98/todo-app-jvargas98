@@ -26,6 +26,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = @list.tasks.build(task_params)
+    @task.status = 0
 
     respond_to do |format|
       if @task.save
