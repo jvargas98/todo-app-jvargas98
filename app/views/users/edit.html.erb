@@ -1,2 +1,19 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container-fluid">
+  <div class="row d-flex flex-row justify-content-center">
+    <div class="">
+      <h1>Edit profile</h1>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag url_for(current_user.avatar), height: 200 %>
+      <% end %>
+      <%= form_with(model: current_user, local: true) do |form| %>
+        <div class="field">
+          <%= form.label :avatar %>
+          <%= form.file_field :avatar %>
+        </div>
+        <div class="field">
+          <%= form.submit "Guardar", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
