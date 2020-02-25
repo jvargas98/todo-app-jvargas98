@@ -1,29 +1,55 @@
-<h1>Tasks</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Text</th>
-      <th>Status</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.name %></td>
-        <td><%= task.text %></td>
-        <td><%= task.status %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.end_date %></td>
-        <td><%= link_to 'Show', @list %></td>
-        <td><%= link_to 'Edit', edit_list_task_path(@list, task) %></td>
-        <td><%= link_to 'Destroy', [@list, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Task', new_list_task_path(@list) %>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-6 pt-5">
+      <div class="d-flex flex-column align-items-center b">
+        <h1><%= @list.name %></h1>
+        <p class="card-text"><small class="text-muted"><%= @list.tasks.count %> Tasks</small></p>
+      </div>
+      <div class="accordion" id="accordionExample">
+        <% @tasks.each do |task| %>
+          <div class="d-flex flex-row">
+            <div class="input-group-prepend">
+              <div class="input-group-text bg-light">
+                <% if task.status == 1%>
+                  <!--<button type="button" class="btn btn-primary" data-toggle="tooltip" title="Done!" style="width: 40px;"><%= link_to '', [@list, task, list: {id: @list.id}, task: {status: task.status}], method: :patch, class: "fas fa-check"%></button>-->
+                  <%= link_to '', update_status_list_task_path(@list, task), class: "btn btn-size btn-primary fas fa-check text-white"%>
+                <% else %>
+                  <%= link_to '', update_status_list_task_path(@list, task), class: "btn btn-size btn-danger fas fa-times text-white"%>
+                <%end%>
+              </div>
+            </div>
+            <div class="card col-11 nopadding mt-3 bg-light">
+              <div class="card-header d-flex" id="headingOne">
+                <h2 class="mb-0 col-11 nopadding">
+                  <button class="btn btn-link text-dark font-weight-bolder" type="button" data-toggle="collapse" data-target="#collapse<%= task.id %>" aria-expanded="false" aria-controls="collapseOne">
+                    <%= task.name %>
+                  </button>
+                </h2>
+                <div class="btn-group dropright pl-lg-4">
+                  <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                    <%= link_to 'Show', [@list, task], class: "dropdown-item"  %>
+                    <%= link_to 'Edit', edit_list_task_path(@list, task), class: "dropdown-item" %>
+                    <%= link_to 'Destroy', [@list, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                  </div>
+                </div>
+              </div>
+              <div id="collapse<%= task.id%>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <p><%= task.text %></p>
+                  <!--<p class="card-text"><small class="text-muted"><%= task.created_at %></small></p>-->
+                  <!--<p class="card-text"><small class="text-muted">Updated at: <%= task.updated_at %></small></p>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="fixed-bottom d-flex justify-content-center mb-1">
+        <%= link_to 'New Task', new_list_task_path(@list), class: "btn btn-primary w-50 rounded-10" %>
+      </div>
+    </div>
+  </div>
+</div>

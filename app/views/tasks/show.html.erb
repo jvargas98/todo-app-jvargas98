@@ -1,22 +1,32 @@
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
-<p>
-  <strong>Text:</strong>
-  <%= @task.text %>
-</p>
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
-<p>
-  <strong>Start date:</strong>
-  <%= @task.start_date %>
-</p>
-<p>
-  <strong>End date:</strong>
-  <%= @task.end_date %>
-</p>
-<%= link_to 'Edit', edit_list_task_path(@list, @task) %> |
-<%= link_to 'Back', list_tasks_path(@list) %>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 mt-5 " style="height: 500px">
+      <div class="d-flex">
+        <h1 ><%= @task.name %></h1>
+        <div class="btn-group dropright pl-lg-4">
+          <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <div class="dropdown-menu">
+            <%= link_to 'Edit', edit_list_task_path(@list, @task), class: "dropdown-item" %>
+            <%= link_to 'Destroy', [@list, @task], method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+          </div>
+        </div>
+      </div>
+      <div class="h-50">
+        <% if @task.status == 1 %>
+          <p class="text-primary"><small>Task done</small></p>
+        <% else %>
+          <p class="text-danger"><small>Task undone</small></p>
+        <% end %>
+        <p><%= @task.text %></p>
+      </div>
+      <% if @task.status == 1 %>
+        <%= link_to 'Undone', update_status_list_task_path(@list, @task), class: "btn btn-primary m-2 rounded-10 w-100" %>
+      <% else %>
+        <%= link_to 'Done', update_status_list_task_path(@list, @task), class: "btn btn-danger m-2 rounded-10 w-100" %>
+      <% end %>
+      <%= link_to 'Back', list_tasks_path(@list), class: "btn btn-link m-2 w-100" %>
+    </div>
+  </div>
+</div>
