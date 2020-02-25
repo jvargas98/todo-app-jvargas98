@@ -1,4 +1,10 @@
-<h1>Editing Task</h1>
-<%= render 'form', task: @task %>
-<%= link_to 'Show', [@list, @task] %> |
-<%= link_to 'Back', list_tasks_path(@list) %>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 pt-5">
+      <h1>Editing Task</h1>
+      <%= render 'form', task: @task %>
+      <%= link_to 'Show', [@list, @task], class: "btn btn-link w-100 mb-2 rounded-10" %>
+      <%= link_to 'Back', list_tasks_path(@list), class: "btn btn-link w-100 mb-2 rounded-10" %>
+    </div>
+  </div>
+</div>

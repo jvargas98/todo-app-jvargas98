@@ -26,6 +26,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = @list.tasks.build(task_params)
+    @task.status = 0
 
     respond_to do |format|
       if @task.save
@@ -59,6 +60,23 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to list_tasks_path(@list), notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def update_status
+    @task = Task.find params[:id]
+    # Authorization checks go here
+    if @task.status == 0
+      @task.status = 1
+      message = "Task #{@task.name} done."
+    else
+      @task.status = 0
+      message = "Task #{@task.name} undone."
+    end
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to list_tasks_path(@list), notice: message }
+      end
     end
   end
 

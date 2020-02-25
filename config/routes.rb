@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   #resources :lists
 
   resources :lists do
-    resources :tasks
+    resources :tasks do
+      get "update_status", on: :member, as: :update_status
+    end
   end
 
   root to: "lists#index"
