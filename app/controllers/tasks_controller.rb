@@ -62,6 +62,23 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_status
+    @task = Task.find params[:id]
+    # Authorization checks go here
+    if @task.status == 0
+      @task.status = 1
+      message = "Task #{@task.name} done."
+    else
+      @task.status = 0
+      message = "Task #{@task.name} undone."
+    end
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to list_tasks_path(@list), notice: message }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
