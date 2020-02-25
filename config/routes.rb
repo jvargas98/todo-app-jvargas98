@@ -9,9 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:update]
-
   get "profile", to: "users#edit"
+  resources :users, only: [:update]
 
   root to: "lists#index"
 
