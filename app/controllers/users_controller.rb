@@ -11,9 +11,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if current_user.update(user_params)
         format.html { redirect_to profile_path, notice: "Profile was successfully updated." }
-        format.json { render :show, status: :created, location: @task }
+        format.json { render :index, status: :created, location: current_user }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
