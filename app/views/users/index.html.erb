@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-8 col-md-6 col-lg-4 pt-5">
+      <%= form_with(model: current_user, local: true) do |form| %>
+        <div class="d-flex flex-column align-items-center mb-4">
+          <h1>Edit profile</h1>
+          <div class="d-flex mt-3">
+            <div class="col-1 nopadding">
+            </div>
+            <div class="col-10 nopadding">
+              <div class="img-size">
+                <% if current_user.avatar.attached? %>
+                  <%= image_tag url_for(current_user.avatar), class: "img-thumbnail h-100 shadow rounded" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-1 nopadding">
+              <%= link_to '', profile_picture_path, class: "btn btn-size btn-dark fas fa-pen text-white"%>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <%= form.label :email %>
+          <%= form.text_field :email %>
+        </div>
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_field :description %>
+        </div>
+        <div class="actions">
+          <%= form.submit "Update", class: "btn btn-primary w-100 rounded-10" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
