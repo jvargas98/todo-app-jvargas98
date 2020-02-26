@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "profile", to: "users#index"
+  get "profile/picture", to: "users#edit"
+  resources :users, only: [:update]
+
   root to: "lists#index"
 
   #match "*path" => redirect("/"), :via => [:get, :post, :delete]
