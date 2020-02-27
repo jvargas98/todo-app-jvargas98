@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @iterator = 0
     @tasks = @list.tasks
     respond_to do |format|
       format.html
