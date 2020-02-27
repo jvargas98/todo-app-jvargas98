@@ -5,7 +5,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @iterator = 0
     @tasks = @list.tasks
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf { render template: "tasks/task", pdf: "Task" }
+    end
   end
 
   # GET /tasks/1

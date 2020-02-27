@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <%= wicked_pdf_stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div>
+      <h1 class="display-4">TodoApp</h1>
+      <div class="dropdown-divider"></div>
+    </div>
+    <div>
+      <p>Task for: <small class="text-muted"><%= current_user.name %></small></p>
+      <p>Generated: <small class="text-muted"><%= Time.now.strftime("%m/%d/%Y") %></small></p>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+      <h1><%= @list.name %></h1>
+      <p class="card-text"><small class="text-muted"><%= @list.tasks.count.to_s + " Task" %></small></p>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Status</th>
+          <th scope="col">Task name</th>
+          <th scope="col">Task description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <th><%= @iterator += 1 %></th>
+            <td>
+              <% if task.status == 1%>
+                <button type="button" class="btn btn-primary" style="width: 80px;">Done</button>
+              <% else %>
+                <button type="button" class="btn btn-danger" style="width: 80px;">Undone</button>
+              <%end%>
+            </td>
+            <th><%= task.name %></th>
+            <td><%= task.text %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
