@@ -11,6 +11,8 @@
               <div class="img-size">
                 <% if current_user.avatar.attached? %>
                   <%= image_tag url_for(current_user.avatar), class: "img-thumbnail h-100 shadow rounded" %>
+                <% else %>
+                  <%= user_gravatar(current_user) %>
                 <% end %>
               </div>
             </div>
