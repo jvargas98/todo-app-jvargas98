@@ -11,6 +11,7 @@ class TasksController < ApplicationController
       format.html
       format.json
       format.pdf { render template: "tasks/task", pdf: "Task" }
+      format.csv { send_data @tasks.to_csv, filename: "list-#{@list.name}-tasks-#{Date.today}.csv" }
     end
   end
 
