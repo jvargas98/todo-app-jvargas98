@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
+
   get "profile", to: "users#index"
   get "profile/picture", to: "users#edit"
   resources :users, only: [:update]
