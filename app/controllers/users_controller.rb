@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @user = current_user
   end
 
   def update
@@ -20,6 +21,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:avatar, :name, :description)
+    params.require(:user).permit(:avatar, :first_name, :last_name, :description)
   end
 end
