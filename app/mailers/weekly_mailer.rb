@@ -3,7 +3,8 @@ class WeeklyMailer < ApplicationMailer
 
   def weekly_email
     @user = params[:user]
-    @url = "http://example.com/login"
-    mail(to: @user.email, subject: "Pending tasks")
+    @lists = @user.lists
+    @url = "http://todo-app.com/login"
+    mail(to: @user.email, subject: "Pending tasks #{Time.now.strftime("%m/%d/%Y")}")
   end
 end
