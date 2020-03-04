@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>TodoApp</h1>
+    <h3>Hi, <%= @user.name %></h3>
+    <p>
+      You have tasks to do yet, don't forget it.<br>
+    </p>
+    <% @lists.each do |list| %>
+      <h4><%= list.name %></h4>
+      <ul>
+        <% list.tasks.each do |task| %>
+          <li><%= task.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <p>Have a great day!</p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+  </body>
+</html>
