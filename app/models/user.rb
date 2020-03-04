@@ -3,8 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :lists
+  validates :first_name, :last_name, :description, :email, presence: true
+  validates :email, uniqueness: true
+  has_many :lists, dependent: :destroy
   has_one_attached :avatar
+  validates :avatar, file_size: { less_than_or_equal_to: 100.kilobytes },
+                     file_content_type: { allow: ["image/jpeg", "image/png"] }
 
   def get_pending_tasks
     pending_tasks = Array.new
