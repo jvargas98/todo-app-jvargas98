@@ -6,8 +6,8 @@
         <p class="card-text"><small class="text-muted"><%= @list.tasks.count %> Tasks</small></p>
       </div>
       <div class="d-flex flex-row justify-content-end">
-        <%= link_to '', list_tasks_path(format: "pdf" ), class: "btn btn-icon btn-danger far fa-file-pdf text-white", title: "Export tasks to pdf"  %>
-        <%= link_to '', list_tasks_path(format: "csv" ), class: "btn btn-icon btn-success fas fa-file-csv text-white", title: "Export tasks to csv" %>
+        <%= link_to '', list_tasks_path(@list, format: "pdf" ), class: "btn btn-icon btn-danger far fa-file-pdf text-white", title: "Export tasks to pdf"  %>
+        <%= link_to '', list_tasks_path(@list, format: "csv" ), class: "btn btn-icon btn-success fas fa-file-csv text-white", title: "Export tasks to csv" %>
       </div>
       <div class="accordion" id="accordionExample">
         <% @tasks.each do |task| %>
