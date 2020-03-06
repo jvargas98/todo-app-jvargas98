@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  validates :name, :text, presence: true
   belongs_to :list
 
   def self.to_csv
